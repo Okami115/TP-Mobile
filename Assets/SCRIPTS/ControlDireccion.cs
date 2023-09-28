@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class ControlDireccion : MonoBehaviour 
 {
-	public enum TipoInput {AWSD, Arrows}
+	public enum TipoInput {AWSD, Arrows, Mobile}
 	public TipoInput InputAct = TipoInput.AWSD;
 
+	private bool isLeftPress;
+	private bool isRightPress;
 	float Giro = 0;
 	
 	public bool Habilitado = true;
@@ -36,6 +38,7 @@ public class ControlDireccion : MonoBehaviour
 					}
                 }
                 break;
+
             case TipoInput.Arrows:
                 if (Habilitado) {
                     if (Input.GetKey(KeyCode.LeftArrow)) {
@@ -49,14 +52,47 @@ public class ControlDireccion : MonoBehaviour
 					}
                 }
                 break;
+
+			case TipoInput.Mobile:
+				if (Habilitado) 
+				{ 
+					if(isLeftPress)
+						Giro = -1;
+					else if (isRightPress)
+						Giro = 1;
+					else 
+						Giro = 0;
+					
+				}
+				break;
         }
 
-		carController.SetGiro(Giro);
+		
+        carController.SetGiro(Giro);
 	}
 
-	public float GetGiro()
+    public float GetGiro()
 	{
 		return Giro;
+	}
+	public void ClickLeft()
+	{
+		isLeftPress = true;
+    }
+
+	public void ClickRight() 
+	{
+        isRightPress = true;
+    }
+
+	public void releaseLeft() 
+	{
+        isLeftPress = false;
+    }
+
+	public void releaseRight() 
+	{ 
+		isRightPress = false;
 	}
 	
 }

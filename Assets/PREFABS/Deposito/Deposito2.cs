@@ -17,7 +17,7 @@ public class Deposito2 : MonoBehaviour
 		GM = FindObjectOfType<GameManager>();
 		Contr1 = GameObject.Find("ContrDesc1").GetComponent<ControladorDeDescarga>();
 
-		if(GM.TypeGame == GameManager.game.multiplayer)
+		if (GM.GetGameType == GameManager.GameType.MultiPlayer)
 			Contr2 = GameObject.Find("ContrDesc2").GetComponent<ControladorDeDescarga>();
 		
 		Physics.IgnoreLayerCollision(8,9,false);

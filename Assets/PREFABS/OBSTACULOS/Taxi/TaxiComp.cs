@@ -191,10 +191,10 @@ public class TaxiComp : MonoBehaviour
 		float dist1 = (GM.Player1.transform.position - PosIni).magnitude;
 		float dist2 = 0;
 
-        if (GM.TypeGame == GameManager.game.multiplayer)
+        if (GM.GetGameType == GameManager.GameType.MultiPlayer)
             dist2 = (GM.Player2.transform.position - PosIni).magnitude;
 		
-		if(dist1 > 4 && dist2 > 4 || dist1 > 4 && GM.TypeGame == GameManager.game.singleplayer)
+		if(dist1 > 4 && dist2 > 4 || dist1 > 4 && GM.GetGameType == GameManager.GameType.SinglePlayer)
 			return true;
 		else
 			return false;

@@ -74188,10 +74188,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206de8d6996c901409dc8463798b8469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTag: Player
   Vacio: 1
-  Contr1: {fileID: 0}
-  Contr2: {fileID: 0}
+  Contr1: {fileID: 13064}
+  Contr2: {fileID: 13068}
 --- !u!114 &12706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74204,10 +74203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206de8d6996c901409dc8463798b8469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTag: Player
   Vacio: 1
-  Contr1: {fileID: 0}
-  Contr2: {fileID: 0}
+  Contr1: {fileID: 13064}
+  Contr2: {fileID: 13068}
 --- !u!114 &12707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74434,10 +74432,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206de8d6996c901409dc8463798b8469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTag: Player
   Vacio: 1
-  Contr1: {fileID: 0}
-  Contr2: {fileID: 0}
+  Contr1: {fileID: 13064}
+  Contr2: {fileID: 13068}
 --- !u!114 &12724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74450,10 +74447,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206de8d6996c901409dc8463798b8469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTag: Player
   Vacio: 1
-  Contr1: {fileID: 0}
-  Contr2: {fileID: 0}
+  Contr1: {fileID: 13064}
+  Contr2: {fileID: 13068}
 --- !u!114 &12725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74702,10 +74698,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206de8d6996c901409dc8463798b8469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTag: Player
   Vacio: 1
-  Contr1: {fileID: 0}
-  Contr2: {fileID: 0}
+  Contr1: {fileID: 13064}
+  Contr2: {fileID: 13068}
 --- !u!114 &12742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74718,7 +74713,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206de8d6996c901409dc8463798b8469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTag: Player
   Vacio: 1
   Contr1: {fileID: 0}
   Contr2: {fileID: 0}
@@ -74852,10 +74846,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206de8d6996c901409dc8463798b8469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTag: Player
   Vacio: 1
-  Contr1: {fileID: 0}
-  Contr2: {fileID: 0}
+  Contr1: {fileID: 13064}
+  Contr2: {fileID: 13068}
 --- !u!114 &12773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74868,10 +74861,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206de8d6996c901409dc8463798b8469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTag: Player
   Vacio: 1
-  Contr1: {fileID: 0}
-  Contr2: {fileID: 0}
+  Contr1: {fileID: 13064}
+  Contr2: {fileID: 13068}
 --- !u!114 &12841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74884,10 +74876,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206de8d6996c901409dc8463798b8469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTag: Player
   Vacio: 1
-  Contr1: {fileID: 0}
-  Contr2: {fileID: 0}
+  Contr1: {fileID: 13064}
+  Contr2: {fileID: 13068}
 --- !u!114 &12842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75263,10 +75254,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206de8d6996c901409dc8463798b8469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTag: Player
   Vacio: 1
-  Contr1: {fileID: 0}
-  Contr2: {fileID: 0}
+  Contr1: {fileID: 13064}
+  Contr2: {fileID: 13068}
 --- !u!114 &13023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75726,21 +75716,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8ccfbee54199948923d8705f53aea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TiempoDeJuego: 60
-  EstAct: 0
-  typeGame: 1
+  timmer: 60
   Player1: {fileID: 13058}
   Player2: {fileID: 27660010}
-  ConteoPosEsc:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  ConteoParaInicion: 3
-  ConteoInicio: {fileID: 11471493}
-  TiempoDeJuegoText: {fileID: 1222576993}
-  TiempEspMuestraPts: 1
+  conteoParaInicion: 3
+  conteoInicio: {fileID: 11471493}
+  tiempoDeJuegoText: {fileID: 1222576993}
+  tiempEspMuestraPts: 3
   PosCamionesCarrera:
   - {x: -17.5, y: 1, z: 5243}
   - {x: -4.2, y: 1, z: 5243}
