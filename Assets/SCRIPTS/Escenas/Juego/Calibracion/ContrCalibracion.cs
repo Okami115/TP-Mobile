@@ -14,12 +14,15 @@ public class ContrCalibracion : MonoBehaviour
 	public ManejoPallets Llegada;
 	public Pallet P;
     public ManejoPallets palletsMover;
-	
-	//----------------------------------------------------//
-	
-	// Use this for initialization
-	void Start () 
+
+	[SerializeField] private GameManager GM;
+
+    //----------------------------------------------------//
+
+    // Use this for initialization
+    void Start () 
 	{
+		GM = FindObjectOfType<GameManager>();
         palletsMover.enabled = false;
         Pj.ContrCalib = this;
 		
@@ -32,10 +35,10 @@ public class ContrCalibracion : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-        if(EstAct == ContrCalibracion.Estados.Calibrando && Pj.Seleccionado) {
+        if(EstAct == Estados.Calibrando && Pj.Seleccionado) {
 			IniciarTesteo();
 		}
-		if(EstAct == ContrCalibracion.Estados.Tutorial)
+		if(EstAct == Estados.Tutorial)
 		{
 			if(Tempo2 < TiempEspCalib)
 			{
@@ -61,7 +64,7 @@ public class ContrCalibracion : MonoBehaviour
 	{
 		EstAct = Estados.Finalizado;
         palletsMover.enabled = false;
-        GameManager.Instancia.FinCalibracion(Pj.IdPlayer);
+        GM.FinCalibracion(Pj.IdPlayer);
 	}
 	
 	void SetActivComp(bool estado)

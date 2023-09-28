@@ -43,23 +43,7 @@ public class AcelerAuto : MonoBehaviour
 	}
 	
 	void FixedUpdate () 
-	{
-		/*
-		//this.rigidbody.MovePosition(this.transform.position + this.transform.forward * Velocidad);
-		if(rigidbody.velocity.magnitude < VelMax)
-			rigidbody.velocity += transform.forward * AcelPorSeg * Time.deltaTime;
-			*/
-		
-		
-		/*
-		if(Velocidad < VelMax)
-		{
-			Velocidad += AcelPorSeg * Time.fixedDeltaTime;
-		}
-		
-		rigidbody.MovePosition(this.transform.position + this.transform.forward * Velocidad);
-		*/
-		
+	{	
 		if(Velocidad < VelMax)
 		{
 			Velocidad += AcelPorSeg * Time.fixedDeltaTime;

@@ -3,21 +3,22 @@ using System.Collections;
 
 public class Deposito2 : MonoBehaviour 
 {
-	
-	Player PjActual;
-	public string PlayerTag = "Player";
+	private Player PjActual;
 	public bool Vacio = true;
-	public ControladorDeDescarga Contr1;
-	public ControladorDeDescarga Contr2;
-	
+	[SerializeField] private ControladorDeDescarga Contr1;
+	[SerializeField] private ControladorDeDescarga Contr2;
+	private GameManager GM;
 	Collider[] PjColl;
 	
 	//----------------------------------------------//
 
 	void Start () 
 	{
+		GM = FindObjectOfType<GameManager>();
 		Contr1 = GameObject.Find("ContrDesc1").GetComponent<ControladorDeDescarga>();
-		Contr2 = GameObject.Find("ContrDesc2").GetComponent<ControladorDeDescarga>();
+
+		if(GM.TypeGame == GameManager.game.multiplayer)
+			Contr2 = GameObject.Find("ContrDesc2").GetComponent<ControladorDeDescarga>();
 		
 		Physics.IgnoreLayerCollision(8,9,false);
 	}

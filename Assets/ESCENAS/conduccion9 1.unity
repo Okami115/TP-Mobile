@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6015423, g: 0.6018507, b: 0.6013663, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999946, b: 0.99999946, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!196 &3
 NavMeshSettings:
@@ -75540,6 +75540,7 @@ MonoBehaviour:
   Llegada: {fileID: 13043}
   P: {fileID: 12647}
   palletsMover: {fileID: 1041039466}
+  GM: {fileID: 0}
 --- !u!114 &13048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75559,6 +75560,7 @@ MonoBehaviour:
   Llegada: {fileID: 13041}
   P: {fileID: 12648}
   palletsMover: {fileID: 354886829}
+  GM: {fileID: 0}
 --- !u!114 &13053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75726,6 +75728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TiempoDeJuego: 60
   EstAct: 0
+  typeGame: 1
   Player1: {fileID: 13058}
   Player2: {fileID: 27660010}
   ConteoPosEsc:
@@ -75741,8 +75744,6 @@ MonoBehaviour:
   PosCamionesCarrera:
   - {x: -17.5, y: 1, z: 5243}
   - {x: -4.2, y: 1, z: 5243}
-  PosCamion1Tuto: {x: 11.5, y: 6004.3, z: 5014.5}
-  PosCamion2Tuto: {x: -257.3, y: 6004.3, z: 5014.5}
   ObjsCalibracion1:
   - {fileID: 3073}
   ObjsCalibracion2:
@@ -83840,7 +83841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9affb8c847ec48e4ea4065d6523b3e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Controlador: {fileID: 0}
+  Controlador: {fileID: 13068}
   miInput: 1
   Desde: {fileID: 13040}
   Hasta: {fileID: 13041}
@@ -84298,7 +84299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9affb8c847ec48e4ea4065d6523b3e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Controlador: {fileID: 0}
+  Controlador: {fileID: 13064}
   miInput: 0
   Desde: {fileID: 13044}
   Hasta: {fileID: 13043}

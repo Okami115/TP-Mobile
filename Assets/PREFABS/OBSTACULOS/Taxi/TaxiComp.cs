@@ -36,11 +36,13 @@ public class TaxiComp : MonoBehaviour
 	
 	
 	enum Lado{Der, Izq}
-	
-	//-----------------------------------------------------------------//
 
-	// Use this for initialization
-	void Start () 
+    [SerializeField] private GameManager GM;
+
+    //-----------------------------------------------------------------//
+
+    // Use this for initialization
+    void Start () 
 	{
 		TiempEntreGiro = (float) Random.Range(TiempCadaCuantoDobla_MaxMin.x, TiempCadaCuantoDobla_MaxMin.y);
 		RotIni = this.transform.localEulerAngles;
@@ -138,23 +140,23 @@ public class TaxiComp : MonoBehaviour
 		Girando = true;
 		//escoje un lado
 		Lado lado;
-		if((int)Random.Range(0,2) == 0)
+		if(Random.Range(0, 2) == 0)
 		{
-			lado = TaxiComp.Lado.Izq;
+			lado = Lado.Izq;
 			//verifica, si no da cambia a derecha
 			if(!VerificarCostado(lado))
-				lado = TaxiComp.Lado.Der;
+				lado = Lado.Der;
 		}
 		else
 		{
-			lado = TaxiComp.Lado.Der;
+			lado = Lado.Der;
 			//verifica, si no da cambia a izq
 			if(!VerificarCostado(lado))
-				lado = TaxiComp.Lado.Izq;
+				lado = Lado.Izq;
 		}
 		
 		
-		if(lado == TaxiComp.Lado.Der)
+		if(lado == Lado.Der)
 		{
 			Vector3 vaux = transform.localEulerAngles;
 			vaux.y += AngDeGiro;
@@ -171,9 +173,9 @@ public class TaxiComp : MonoBehaviour
 	void DejarDoblar()
 	{
 		Girando = false;
-		TiempEntreGiro = (float) Random.Range(TiempCadaCuantoDobla_MaxMin.x, TiempCadaCuantoDobla_MaxMin.y);
-		
-		transform.localEulerAngles = RotIni;
+        TiempEntreGiro = Random.Range(TiempCadaCuantoDobla_MaxMin.x, TiempCadaCuantoDobla_MaxMin.y);
+
+        transform.localEulerAngles = RotIni;
 	}
 	
 	void Respawn()
@@ -186,10 +188,13 @@ public class TaxiComp : MonoBehaviour
 	
 	bool Medicion()
 	{
-		float dist1 = (GameManager.Instancia.Player1.transform.position - PosIni).magnitude;
-		float dist2 = (GameManager.Instancia.Player2.transform.position - PosIni).magnitude;
+		float dist1 = (GM.Player1.transform.position - PosIni).magnitude;
+		float dist2 = 0;
+
+        if (GM.TypeGame == GameManager.game.multiplayer)
+            dist2 = (GM.Player2.transform.position - PosIni).magnitude;
 		
-		if(dist1 > 4 && dist2 > 4)
+		if(dist1 > 4 && dist2 > 4 || dist1 > 4 && GM.TypeGame == GameManager.game.singleplayer)
 			return true;
 		else
 			return false;
