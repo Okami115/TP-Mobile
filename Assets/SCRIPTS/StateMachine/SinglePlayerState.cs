@@ -32,11 +32,16 @@ public class SinglePlayerState : State
         {
             case EstadoJuego.Calibrando:
 
+#if UNITY_ANDROID
+                gameManager.Player1.Seleccionado = true;
+#endif
+
+#if UNITY_STANDALONE
                 if (Input.GetKeyDown(KeyCode.W))
                 {
                     gameManager.Player1.Seleccionado = true;
                 }
-
+#endif
                 break;
 
             case EstadoJuego.Jugando:

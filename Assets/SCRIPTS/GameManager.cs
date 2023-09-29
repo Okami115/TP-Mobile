@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         fsm.AddState<SinglePlayerState>(new SinglePlayerState(fsm, this));
         fsm.AddState<MultiPlayerState>(new MultiPlayerState(fsm, this));
 
-        fsm.ChangeState<MultiPlayerState>();
+        fsm.ChangeState<SinglePlayerState>();
 
     }
 

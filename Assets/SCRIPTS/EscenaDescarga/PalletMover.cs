@@ -7,13 +7,19 @@ public class PalletMover : ManejoPallets {
     public MoveType miInput;
     public enum MoveType {
         WASD,
-        Arrows
+        Arrows,
+        Mobile
     }
 
     public ManejoPallets Desde, Hasta;
     bool segundoCompleto = false;
 
-    private void Update() {
+    private bool isLeftPress = false;
+    private bool isRightPress = false;
+
+    private void Update() 
+    {
+        Debug.Log("Botton: " + isLeftPress);
         switch (miInput) {
             case MoveType.WASD:
                 if (!Tenencia() && Desde.Tenencia() && Input.GetKeyDown(KeyCode.A)) {
@@ -26,6 +32,7 @@ public class PalletMover : ManejoPallets {
                     TercerPaso();
                 }
                 break;
+
             case MoveType.Arrows:
                 if (!Tenencia() && Desde.Tenencia() && Input.GetKeyDown(KeyCode.LeftArrow)) {
                     PrimerPaso();
@@ -37,9 +44,25 @@ public class PalletMover : ManejoPallets {
                     TercerPaso();
                 }
                 break;
+
+            case MoveType.Mobile:
+                 Debug.Log("Botton: " + isLeftPress);
+                if (!Tenencia() && Desde.Tenencia() && isLeftPress)
+                {
+                    PrimerPaso();
+                }
+                if (Tenencia() && isRightPress)
+                {
+                    SegundoPaso();
+                    TercerPaso();
+                }
+                break;
+
             default:
                 break;
         }
+
+        Debug.Log("Botton: " + isLeftPress);
     }
 
     void PrimerPaso() {
@@ -70,5 +93,28 @@ public class PalletMover : ManejoPallets {
         }
         else
             return false;
+    }
+
+    public void ClickLeft()
+    {
+        isLeftPress = true;
+        Debug.Log("Botton: " + isLeftPress);
+
+    }
+
+    public void ClickRight()
+    {
+        isRightPress = true;
+    }
+
+    public void releaseLeft()
+    {
+        isLeftPress = false;
+        Debug.Log("Click");
+    }
+
+    public void releaseRight()
+    {
+        isRightPress = false;
     }
 }

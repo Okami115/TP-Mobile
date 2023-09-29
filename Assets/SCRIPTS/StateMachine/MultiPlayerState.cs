@@ -50,6 +50,11 @@ public class MultiPlayerState : State
         {
             case EstadoJuego.Calibrando:
 
+#if UNITY_ANDROID
+                gameManager.Player1.Seleccionado = true;
+                gameManager.Player2.Seleccionado = true;
+#endif
+#if UNITY_STANDALONE
 
                 if (Input.GetKeyDown(KeyCode.W))
                 {
@@ -60,6 +65,7 @@ public class MultiPlayerState : State
                 {
                     gameManager.Player2.Seleccionado = true;
                 }
+#endif
 
 
                 break;
