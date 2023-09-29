@@ -3,7 +3,7 @@ using UnityEngine;
 public class ControlDireccion : MonoBehaviour 
 {
 	public enum TipoInput {AWSD, Arrows, Mobile}
-	public TipoInput InputAct = TipoInput.AWSD;
+	public TipoInput InputAct;
 
 	private bool isLeftPress;
 	private bool isRightPress;
@@ -15,11 +15,16 @@ public class ControlDireccion : MonoBehaviour
 	//---------------------------------------------------------//
 	
 	// Use this for initialization
-	void Start () 
+	void Start ()
 	{
 		carController = GetComponent<CarController>();
-	}
-	
+#if UNITY_ANDROID
+		InputAct = TipoInput.Mobile;
+#else
+		InputAct = TipoInput.AWSD;
+#endif
+    }
+
 	// Update is called once per frame
 	void Update () 
 	{

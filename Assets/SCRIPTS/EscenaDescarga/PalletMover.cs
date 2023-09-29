@@ -17,6 +17,15 @@ public class PalletMover : ManejoPallets {
     private bool isLeftPress = false;
     private bool isRightPress = false;
 
+    private void Start()
+    {
+#if UNITY_ANDROID
+        miInput = MoveType.Mobile;
+#else
+        miInput = MoveType.WASD;
+#endif
+    }
+
     private void Update() 
     {
         Debug.Log("Botton: " + isLeftPress);
@@ -46,7 +55,6 @@ public class PalletMover : ManejoPallets {
                 break;
 
             case MoveType.Mobile:
-                 Debug.Log("Botton: " + isLeftPress);
                 if (!Tenencia() && Desde.Tenencia() && isLeftPress)
                 {
                     PrimerPaso();
