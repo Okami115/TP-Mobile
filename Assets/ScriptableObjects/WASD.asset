@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3e3855ca640394b9b4d3284dd621ef, type: 3}
   m_Name: WASD
   m_EditorClassIdentifier: 
-  left: 0
-  right: 0
+  left: 97
+  right: 100
+  down: 115

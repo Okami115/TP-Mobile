@@ -8,16 +8,17 @@ public class  FSM : MonoBehaviour
 {
     public static FSM instance {  get; private set; }
 
-    private StateMachine stateMachine;
+    [SerializeField] private StateMachine stateMachine;
 
-    private GameManager gameManager;
+    [SerializeField] private GameManager gameManager;
 
     private void Awake()
     {
+        gameManager = FindAnyObjectByType<GameManager>();
+
         if (instance == null)
         {
             instance = FindObjectOfType<FSM>();
-            gameManager = FindObjectOfType<GameManager>();
 
             if (instance == null)
             {
@@ -31,20 +32,31 @@ public class  FSM : MonoBehaviour
         {
             Destroy(this);
         }
+
+        Debug.Log("FSM Awaked");
     }
 
     private void Start()
     {
         stateMachine = new StateMachine();
-        stateMachine.AddState<MenuState>(new MenuState(stateMachine, gameManager));
+        stateMachine.AddState<MenuState>(new MenuState(stateMachine));
         stateMachine.AddState<SinglePlayerState>(new SinglePlayerState(stateMachine, gameManager));
         stateMachine.AddState<MultiPlayerState>(new MultiPlayerState(stateMachine, gameManager));
 
-        stateMachine.ChangeState<SinglePlayerState>();
+        stateMachine.ChangeState<MenuState>();
+        Debug.Log("FSM Started");
     }
 
     private void Update()
     {
+
+        if(gameManager == null)
+        {
+            Debug.Log("Change GM");
+            gameManager = FindAnyObjectByType<GameManager>();
+            stateMachine.SetGameManager(gameManager);
+        }
+
         stateMachine.Update();
     }
 
@@ -99,12 +111,18 @@ public class StateMachine
             currentState.Enter();
         }
     }
+
+    public void SetGameManager(GameManager gameManager)
+    {
+        currentState.gameManager = gameManager;
+    }
 }
 
 public abstract class State
 {
     protected StateMachine machine;
     protected Dictionary<Type, Condition> conditions = new Dictionary<Type, Condition> ();
+    public GameManager gameManager;
 
     protected State(StateMachine machine)
     {

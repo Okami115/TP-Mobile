@@ -5,6 +5,13 @@ public class KeyCodeInputConfig : InputConfig
 {
     [SerializeField] private KeyCode left;
     [SerializeField] private KeyCode right;
+    [SerializeField] private KeyCode down;
+
+    public override bool IsPressingDown()
+    {
+        return Input.GetKey(down);
+    }
+
     public override bool IsPressingLeft()
     {
         return Input.GetKey(left);

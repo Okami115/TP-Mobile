@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class MultiPlayerState : State
 {
-    GameManager gameManager;
+    private bool intro = true;
+
     public MultiPlayerState(StateMachine machine, GameManager gameManager) : base(machine)
     {
         this.gameManager = gameManager;
@@ -14,13 +15,14 @@ public class MultiPlayerState : State
 
     public override void Enter()
     {
+        intro = true;
         gameManager.GetGameType = GameType.MultiPlayer;
-        IniciarTutorial();
+        if (gameManager.Player1 == null || gameManager.Player2) { return; }
     }
 
     public override void Exit()
     {
-        this.gameManager.finTuto -= CambiarACarrera;
+        gameManager.finTuto -= CambiarACarrera;
         FinalizarCarrera();
     }
 
@@ -28,8 +30,10 @@ public class MultiPlayerState : State
     {
         if (CheckCondition<TimeOut>())
         {
-            machine.ChangeState<MenuState>();
+            //machine.ChangeState<MenuState>();
         }
+
+        if (gameManager.Player1 == null || gameManager.Player2 == null) { return; }
 
         //REINICIAR
         if (Input.GetKey(KeyCode.Alpha0))
@@ -62,8 +66,15 @@ public class MultiPlayerState : State
                 {
                     gameManager.Player2.Seleccionado = true;
                 }
-#endif
 
+#endif
+                if (intro)
+                {
+                    this.gameManager.finTuto += CambiarACarrera;
+                    gameManager.GetGameType = GameType.MultiPlayer;
+                    IniciarTutorial();
+                    intro = false;
+                }
 
                 break;
 
@@ -73,11 +84,6 @@ public class MultiPlayerState : State
                 if (Input.GetKey(KeyCode.Alpha9))
                 {
                     gameManager.Timmer = 0;
-                }
-
-                if (gameManager.Timmer <= 0)
-                {
-                    FinalizarCarrera();
                 }
 
                 if (gameManager.ConteoRedresivo)

@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b3e3855ca640394b9b4d3284dd621ef, type: 3}
-  m_Name: Arrows
+  m_Script: {fileID: 11500000, guid: a1b15bf1f0570d441b2405fd9c0f5d57, type: 3}
+  m_Name: Mobile 1
   m_EditorClassIdentifier: 
-  left: 276
-  right: 275
-  down: 274
+  divider: 2
+  dividerIndex: 1

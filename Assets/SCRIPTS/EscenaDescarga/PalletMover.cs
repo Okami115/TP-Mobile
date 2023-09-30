@@ -2,72 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PalletMover : ManejoPallets {
-
-    public MoveType miInput;
-    public enum MoveType {
-        WASD,
-        Arrows,
-        Mobile
-    }
+public class PalletMover : ManejoPallets 
+{
+    private InputConfig inputConfig;
+    [SerializeField] public InputConfig inputConfigMobile;
+    [SerializeField] public InputConfig inputConfigPC;
 
     public ManejoPallets Desde, Hasta;
     bool segundoCompleto = false;
 
-    private bool isLeftPress = false;
-    private bool isRightPress = false;
-
     private void Start()
     {
 #if UNITY_ANDROID
-        miInput = MoveType.Mobile;
+        inputConfig = inputConfigMobile;
 #else
-        miInput = MoveType.WASD;
+		inputConfig = inputConfigPC;
 #endif
     }
 
     private void Update() 
     {
-        switch (miInput) {
-            case MoveType.WASD:
-                if (!Tenencia() && Desde.Tenencia() && Input.GetKeyDown(KeyCode.A)) {
-                    PrimerPaso();
-                }
-                if (Tenencia() && Input.GetKeyDown(KeyCode.S)) {
-                    SegundoPaso();
-                }
-                if (segundoCompleto && Tenencia() && Input.GetKeyDown(KeyCode.D)) {
-                    TercerPaso();
-                }
-                break;
+        if (!Tenencia() && Desde.Tenencia() && inputConfig.IsPressingLeft())
+            PrimerPaso();
 
-            case MoveType.Arrows:
-                if (!Tenencia() && Desde.Tenencia() && Input.GetKeyDown(KeyCode.LeftArrow)) {
-                    PrimerPaso();
-                }
-                if (Tenencia() && Input.GetKeyDown(KeyCode.DownArrow)) {
-                    SegundoPaso();
-                }
-                if (segundoCompleto && Tenencia() && Input.GetKeyDown(KeyCode.RightArrow)) {
-                    TercerPaso();
-                }
-                break;
+        if (Tenencia() && inputConfig.IsPressingDown())
+            SegundoPaso();
 
-            case MoveType.Mobile:
-                if (!Tenencia() && Desde.Tenencia() && isLeftPress)
-                {
-                    PrimerPaso();
-                }
-                if (Tenencia() && isRightPress)
-                {
-                    SegundoPaso();
-                    TercerPaso();
-                }
-                break;
-
-            default:
-                break;
-        }
+        if(segundoCompleto && Tenencia() && inputConfig.IsPressingRight())    
+            TercerPaso();
 
     }
 
@@ -101,23 +63,4 @@ public class PalletMover : ManejoPallets {
             return false;
     }
 
-    public void ClickLeft()
-    {
-        isLeftPress = true;
-    }
-
-    public void ClickRight()
-    {
-        isRightPress = true;
-    }
-
-    public void releaseLeft()
-    {
-        isLeftPress = false;
-    }
-
-    public void releaseRight()
-    {
-        isRightPress = false;
-    }
 }

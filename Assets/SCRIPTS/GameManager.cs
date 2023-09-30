@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (Player1.FinTuto && gameType == GameType.SinglePlayer || Player1.FinTuto && Player2.FinTuto)
-            finTuto?.Invoke();
+            finTuto.Invoke();
     }
 }
 public class TimeOut : Condition

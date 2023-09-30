@@ -5,10 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuState : State
 {
-    GameManager gameManager;
-    public MenuState(StateMachine machine, GameManager gameManager) : base(machine)
+    public MenuState(StateMachine machine) : base(machine)
     {
-        this.gameManager = gameManager;
+
     }
 
     public override void Enter()

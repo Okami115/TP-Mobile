@@ -4,18 +4,22 @@ using UnityEngine.SceneManagement;
 
 public class SinglePlayerState : State
 {
-    GameManager gameManager;
+
+    private bool intro = true;
+
     public SinglePlayerState(StateMachine machine, GameManager gameManager) : base(machine)
     {
         this.gameManager = gameManager;
         conditions.Add(typeof(TimeOut), new TimeOut(this.gameManager.Timmer));
-        this.gameManager.finTuto += CambiarACarrera;
+
     }
 
     public override void Enter()
     {
+        intro = true;   
         gameManager.GetGameType = GameType.SinglePlayer; 
-        IniciarTutorial();
+        if (gameManager.Player1 == null) { return; }
+
     }
 
     public override void Update()
@@ -25,12 +29,22 @@ public class SinglePlayerState : State
             //machine.ChangeState<MenuState>();
         }
 
+        if(gameManager.Player1 == null) { return; }
+
+        Debug.Log("SP: GM: " + gameManager.name);
+
         switch (gameManager.EstAct)
         {
             case EstadoJuego.Calibrando:
 
 #if UNITY_ANDROID
                 gameManager.Player1.Seleccionado = true;
+                if(intro)
+                {
+                    this.gameManager.finTuto += CambiarACarrera;
+                    IniciarTutorial();
+                    intro = false;
+                }
 #endif
 
 #if UNITY_STANDALONE
@@ -39,6 +53,13 @@ public class SinglePlayerState : State
                     gameManager.Player1.Seleccionado = true;
                 }
 #endif
+                if (intro)
+                {
+                    this.gameManager.finTuto += CambiarACarrera;
+                    IniciarTutorial();
+                    intro = false;
+                }
+
                 break;
 
             case EstadoJuego.Jugando:

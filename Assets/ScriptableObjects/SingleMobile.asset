@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1b15bf1f0570d441b2405fd9c0f5d57, type: 3}
-  m_Name: Mobile
+  m_Script: {fileID: 11500000, guid: d1a6a6b9e2a784d468a98a8f59443d6a, type: 3}
+  m_Name: SingleMobile
   m_EditorClassIdentifier: 
