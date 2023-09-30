@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuState : State
 {
@@ -12,16 +13,16 @@ public class MenuState : State
 
     public override void Enter()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

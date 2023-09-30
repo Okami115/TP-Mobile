@@ -28,7 +28,6 @@ public class PalletMover : ManejoPallets {
 
     private void Update() 
     {
-        Debug.Log("Botton: " + isLeftPress);
         switch (miInput) {
             case MoveType.WASD:
                 if (!Tenencia() && Desde.Tenencia() && Input.GetKeyDown(KeyCode.A)) {
@@ -70,7 +69,6 @@ public class PalletMover : ManejoPallets {
                 break;
         }
 
-        Debug.Log("Botton: " + isLeftPress);
     }
 
     void PrimerPaso() {
@@ -106,8 +104,6 @@ public class PalletMover : ManejoPallets {
     public void ClickLeft()
     {
         isLeftPress = true;
-        Debug.Log("Botton: " + isLeftPress);
-
     }
 
     public void ClickRight()
@@ -118,7 +114,6 @@ public class PalletMover : ManejoPallets {
     public void releaseLeft()
     {
         isLeftPress = false;
-        Debug.Log("Click");
     }
 
     public void releaseRight()

@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static GameManager;
-using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.SceneManagement;
 
 public class MultiPlayerState : State
@@ -125,7 +122,7 @@ public class MultiPlayerState : State
                 break;
         }
 
-
+        gameManager.TiempoDeJuegoText.transform.parent.gameObject.SetActive(gameManager.EstAct == EstadoJuego.Jugando && !gameManager.ConteoRedresivo);
     }
 
     public void IniciarTutorial()

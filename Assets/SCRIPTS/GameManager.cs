@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using System;
 
 public class GameManager : MonoBehaviour
@@ -12,8 +11,6 @@ public class GameManager : MonoBehaviour
     public enum EstadoJuego { Calibrando, Jugando, Finalizado }
     public enum GameType { SinglePlayer, MultiPlayer }
     public enum difficulti { easy, normal, hard }
-
-    private StateMachine fsm;
 
     public EstadoJuego EstAct { get => estAct; set => estAct = value; }
     private EstadoJuego estAct = EstadoJuego.Calibrando;
@@ -49,17 +46,6 @@ public class GameManager : MonoBehaviour
     public Action finTuto;
 
 
-    private void Start()
-    {
-        fsm = new StateMachine();
-        fsm.AddState<MenuState>(new MenuState(fsm, this));
-        fsm.AddState<SinglePlayerState>(new SinglePlayerState(fsm, this));
-        fsm.AddState<MultiPlayerState>(new MultiPlayerState(fsm, this));
-
-        fsm.ChangeState<MultiPlayerState>();
-
-    }
-
     private void Update() 
     {
         //REINICIAR
@@ -74,9 +60,6 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
 
-        fsm.Update();
-
-        tiempoDeJuegoText.transform.parent.gameObject.SetActive(EstAct == EstadoJuego.Jugando && !conteoRedresivo);
     }
 
     public void FinCalibracion(int playerID)
@@ -94,7 +77,6 @@ public class GameManager : MonoBehaviour
         if (Player1.FinTuto && gameType == GameType.SinglePlayer || Player1.FinTuto && Player2.FinTuto)
             finTuto?.Invoke();
     }
-
 }
 public class TimeOut : Condition
     {

@@ -17,4 +17,14 @@ public class UIManager : MonoBehaviour
         
     }
 
+    public void PlaySinglePlayer()
+    {
+        FSM.instance.ChangeScene(GameManager.GameType.SinglePlayer);
+    }
+
+    public void PlayMultiPlayer()
+    {
+        FSM.instance.ChangeScene(GameManager.GameType.MultiPlayer);
+    }
+
 }
