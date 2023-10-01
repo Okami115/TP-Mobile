@@ -3,7 +3,9 @@ using System.Collections;
 
 public class PantallaCalibTuto : MonoBehaviour 
 {
-	public Texture2D[] ImagenesDelTuto;
+	private Texture2D[] ImagenesDelTuto;
+	public Texture2D[] tutoPC;
+	public Texture2D[] tutoMobile;
 	public float Intervalo = 1.2f;//tiempo de cada cuanto cambia de imagen
 	float TempoIntTuto = 0;
 	int EnCursoTuto = 0;
@@ -15,9 +17,19 @@ public class PantallaCalibTuto : MonoBehaviour
 	public Texture2D ImaReady;
 	
 	public ContrCalibracion ContrCalib;
-	
-	// Update is called once per frame
-	void Update () 
+
+    private void Start()
+    {
+#if UNITY_ANDROID
+        ImagenesDelTuto = tutoMobile;
+#else
+		ImagenesDelTuto = tutoPC;
+
+#endif
+    }
+
+    // Update is called once per frame
+    void Update () 
 	{
 		switch(ContrCalib.EstAct)
 		{

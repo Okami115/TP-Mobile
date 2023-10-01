@@ -86,6 +86,11 @@ public class MultiPlayerState : State
                     gameManager.Timmer = 0;
                 }
 
+                if (gameManager.Timmer <= 0)
+                {
+                    FinalizarCarrera();
+                }
+
                 if (gameManager.ConteoRedresivo)
                 {
                     gameManager.ConteoParaInicion -= T.GetDT();
@@ -123,7 +128,10 @@ public class MultiPlayerState : State
 
                 gameManager.TiempEspMuestraPts -= Time.deltaTime;
                 if (gameManager.TiempEspMuestraPts <= 0)
-                    SceneManager.LoadScene(1);
+                {
+                    machine.ChangeState<MenuState>();
+                    SceneManager.LoadScene(3);
+                }
 
                 break;
         }

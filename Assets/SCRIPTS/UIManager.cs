@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,7 +24,7 @@ public class UIManager : MonoBehaviour
 
     public void PlayMultiPlayer()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         FSM.instance.ChangeScene(GameManager.GameType.MultiPlayer);
     }
 

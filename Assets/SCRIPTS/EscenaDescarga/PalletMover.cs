@@ -11,6 +11,9 @@ public class PalletMover : ManejoPallets
     public ManejoPallets Desde, Hasta;
     bool segundoCompleto = false;
 
+    bool isLeftPress = false;   
+    bool isRightPress = false;   
+
     private void Start()
     {
 #if UNITY_ANDROID
@@ -22,14 +25,28 @@ public class PalletMover : ManejoPallets
 
     private void Update() 
     {
+
+#if UNITY_ANDROID
+        if (!Tenencia() && Desde.Tenencia() && inputConfig.IsPressingLeft() && GameManager.GameType.MultiPlayer != FSM.instance.GetState() ||
+            !Tenencia() && Desde.Tenencia() && isLeftPress && GameManager.GameType.MultiPlayer == FSM.instance.GetState())
+            PrimerPaso();
+
+        if (Tenencia() && inputConfig.IsPressingDown())
+            SegundoPaso();
+
+        if(segundoCompleto && Tenencia() && inputConfig.IsPressingRight() && GameManager.GameType.MultiPlayer != FSM.instance.GetState() ||
+            segundoCompleto && Tenencia() && isRightPress && GameManager.GameType.MultiPlayer == FSM.instance.GetState())    
+            TercerPaso();
+#else
         if (!Tenencia() && Desde.Tenencia() && inputConfig.IsPressingLeft())
             PrimerPaso();
 
         if (Tenencia() && inputConfig.IsPressingDown())
             SegundoPaso();
 
-        if(segundoCompleto && Tenencia() && inputConfig.IsPressingRight())    
+        if(segundoCompleto && Tenencia() && inputConfig.IsPressingRight())   
             TercerPaso();
+#endif
 
     }
 
@@ -63,4 +80,23 @@ public class PalletMover : ManejoPallets
             return false;
     }
 
+    public void ClickLeft()
+    {
+        isLeftPress = true;
+    }
+
+    public void ClickRight()
+    {
+        isRightPress = true;
+    }
+
+    public void ReleaseLeft()
+    {
+        isLeftPress = false;
+    }
+
+    public void ReleaseRight()
+    {
+        isRightPress = false;
+    }
 }

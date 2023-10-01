@@ -7,8 +7,11 @@ public class ControlDireccion : MonoBehaviour
 	[SerializeField] public InputConfig inputConfigPC;
 
 	float Giro = 0;
-	
-	public bool Habilitado = true;
+
+    bool isLeftPress = false;
+    bool isRightPress = false;
+
+    public bool Habilitado = true;
 	CarController carController;
 
 	void Start ()
@@ -25,10 +28,17 @@ public class ControlDireccion : MonoBehaviour
 
 	void Update () 
 	{
-		Giro = inputConfig.IsPressingLeft()
-					? -1 : inputConfig.IsPressingRight()
-							? 1 : 0;
-		
+
+#if UNITY_ANDROID
+        Giro = inputConfig.IsPressingLeft() && GameManager.GameType.MultiPlayer != FSM.instance.GetState() || isLeftPress && GameManager.GameType.MultiPlayer == FSM.instance.GetState()
+                    ? -1 : inputConfig.IsPressingRight() && GameManager.GameType.MultiPlayer != FSM.instance.GetState() || isRightPress && GameManager.GameType.MultiPlayer == FSM.instance.GetState()
+                            ? 1 : 0;
+#else
+        Giro = inputConfig.IsPressingLeft()
+            ? -1 : inputConfig.IsPressingRight()
+                    ? 1 : 0;
+#endif
+
         carController.SetGiro(Giro);
 	}
 
@@ -37,5 +47,24 @@ public class ControlDireccion : MonoBehaviour
 		return Giro;
 	}
 
-	
+    public void ClickLeft()
+    {
+        isLeftPress = true;
+    }
+
+    public void ClickRight()
+    {
+        isRightPress = true;
+    }
+
+    public void ReleaseLeft()
+    {
+        isLeftPress = false;
+    }
+
+    public void ReleaseRight()
+    {
+        isRightPress = false;
+    }
+
 }

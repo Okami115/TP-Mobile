@@ -6,12 +6,21 @@ public class LoopTextura : MonoBehaviour
 	public float Intervalo = 1;
 	float Tempo = 0;
 	
-	public Texture2D[] Imagenes;
+	private Texture2D[] Imagenes;
+	public Texture2D[] ImagenesPC;
+	public Texture2D[] ImagenesMobiles;
 	int Contador = 0;
 
 	// Use this for initialization
 	void Start () 
 	{
+#if UNITY_ANDROID
+		Imagenes = ImagenesMobiles;
+#else
+		Imagenes = ImagenesPC;
+
+#endif
+
 		if(Imagenes.Length > 0)
 			GetComponent<Renderer>().material.mainTexture = Imagenes[0];
 	}

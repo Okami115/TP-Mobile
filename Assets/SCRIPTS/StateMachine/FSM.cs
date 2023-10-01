@@ -33,7 +33,6 @@ public class  FSM : MonoBehaviour
             Destroy(this);
         }
 
-        Debug.Log("FSM Awaked");
     }
 
     private void Start()
@@ -44,7 +43,6 @@ public class  FSM : MonoBehaviour
         stateMachine.AddState<MultiPlayerState>(new MultiPlayerState(stateMachine, gameManager));
 
         stateMachine.ChangeState<MenuState>();
-        Debug.Log("FSM Started");
     }
 
     private void Update()
@@ -52,7 +50,6 @@ public class  FSM : MonoBehaviour
 
         if(gameManager == null)
         {
-            Debug.Log("Change GM");
             gameManager = FindAnyObjectByType<GameManager>();
             stateMachine.SetGameManager(gameManager);
         }
@@ -74,6 +71,11 @@ public class  FSM : MonoBehaviour
                 break;
 
         }
+    }
+
+    public GameManager.GameType GetState()
+    {
+        return gameManager.GetGameType;
     }
 
 }

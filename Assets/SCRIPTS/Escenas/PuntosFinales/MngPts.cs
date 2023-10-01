@@ -1,28 +1,27 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+using System.Linq;
 
 public class MngPts : MonoBehaviour 
 {
-	Rect R = new Rect();
-	
 	public float TiempEmpAnims = 2.5f;
 	float Tempo = 0;
 	
-	public Vector2[] DineroPos;
-	public Vector2 DineroEsc;
 	public GUISkin GS_Dinero;
-	
-	public Vector2 GanadorPos;
-	public Vector2 GanadorEsc;
+
+	[SerializeField] private TextMeshProUGUI text1;
+	[SerializeField] private TextMeshProUGUI text2;
+
 	public Texture2D[] Ganadores;
 	public GUISkin GS_Ganador;
 	
 	public GameObject Fondo;
 	
 	public float TiempEspReiniciar = 10;
-	
-	
+
 	public float TiempParpadeo = 0.7f;
 	float TempoParpadeo = 0;
 	bool PrimerImaParp = true;
@@ -41,29 +40,12 @@ public class MngPts : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () 
-	{
-		//PARA JUGAR
-		if(Input.GetKeyDown(KeyCode.Space) || 
-		   Input.GetKeyDown(KeyCode.Return) ||
-		   Input.GetKeyDown(KeyCode.Alpha0))
-		{
-			SceneManager.LoadScene(0);
-		}
-		
-		//CIERRA LA APLICACION
-		if(Input.GetKeyDown(KeyCode.Escape))
-		{
-			Application.Quit();
-		}		
-		
-		
+	{			
 		TiempEspReiniciar -= Time.deltaTime;
 		if(TiempEspReiniciar <= 0 )
 		{
 			SceneManager.LoadScene(0);
 		}
-		
-		
 		
 		
 		if(ActivadoAnims)
@@ -83,8 +65,6 @@ public class MngPts : MonoBehaviour
 				}
 			}
 		}
-		
-		
 		
 		if(!ActivadoAnims)
 		{
@@ -133,41 +113,30 @@ public class MngPts : MonoBehaviour
 	
 	void SetDinero()
 	{
-		GUI.skin = GS_Dinero;
-		
-		R.width = DineroEsc.x * Screen.width/100;
-		R.height = DineroEsc.y * Screen.height/100;
-		
-		
-		
-		//IZQUIERDA
-		R.x = DineroPos[0].x * Screen.width/100;
-		R.y = DineroPos[0].y * Screen.height/100;
-		
 		if(DatosPartida.LadoGanadaor == DatosPartida.Lados.Izq)//izquierda
 		{
-			if(!PrimerImaParp)//para que parpadee
-				GUI.Box(R, "$" + Viz.PrepararNumeros(DatosPartida.PtsGanador));
-		}
+			if (!PrimerImaParp)
+			{
+				text1.text = "$" + Viz.PrepararNumeros(DatosPartida.PtsGanador);
+            }
+        }
 		else
 		{
-			GUI.Box(R, "$" + Viz.PrepararNumeros(DatosPartida.PtsPerdedor));
+			text1.text = "$" + Viz.PrepararNumeros(DatosPartida.PtsPerdedor);
 		}
 		
 		
-		
-		//DERECHA
-		R.x = DineroPos[1].x * Screen.width/100;
-		R.y = DineroPos[1].y * Screen.height/100;
 		
 		if(DatosPartida.LadoGanadaor == DatosPartida.Lados.Der)//derecha
 		{
-			if(!PrimerImaParp)//para que parpadee
-				GUI.Box(R, "$" + Viz.PrepararNumeros(DatosPartida.PtsGanador));
+			if(!PrimerImaParp)
+			{
+				text2.text = "$" + Viz.PrepararNumeros(DatosPartida.PtsGanador);
+			}
 		}
 		else
 		{
-			GUI.Box(R, "$" + Viz.PrepararNumeros(DatosPartida.PtsPerdedor));
+			text2.text = "$" + Viz.PrepararNumeros(DatosPartida.PtsPerdedor);
 		}
 		
 	}
@@ -175,13 +144,6 @@ public class MngPts : MonoBehaviour
 	void SetCartelGanador()
 	{
 		GUI.skin = GS_Ganador;
-		
-		R.width = GanadorEsc.x * Screen.width/100;
-		R.height = GanadorEsc.y * Screen.height/100;
-		R.x = GanadorPos.x * Screen.width/100;
-		R.y = GanadorPos.y * Screen.height/100;
-		
-		GUI.Box(R, "");
 	}
 	
 	public void DesaparecerGUI()

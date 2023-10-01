@@ -24,14 +24,8 @@ public class SinglePlayerState : State
 
     public override void Update()
     {
-        if (CheckCondition<TimeOut>())
-        {
-            //machine.ChangeState<MenuState>();
-        }
-
         if(gameManager.Player1 == null) { return; }
 
-        Debug.Log("SP: GM: " + gameManager.name);
 
         switch (gameManager.EstAct)
         {
@@ -110,7 +104,10 @@ public class SinglePlayerState : State
 
                 gameManager.TiempEspMuestraPts -= Time.deltaTime;
                 if (gameManager.TiempEspMuestraPts <= 0)
-                    SceneManager.LoadScene(1);
+                {
+                    machine.ChangeState<MenuState>();
+                    SceneManager.LoadScene(3);
+                }
 
                 break;
         }
@@ -156,6 +153,11 @@ public class SinglePlayerState : State
         gameManager.EstAct = EstadoJuego.Finalizado;
 
         gameManager.Timmer = 0;
+
+
+        DatosPartida.LadoGanadaor = DatosPartida.Lados.Izq;
+
+        DatosPartida.PtsGanador = gameManager.Player1.Dinero;
 
         gameManager.Player1.GetComponent<Frenado>().Frenar();
 
